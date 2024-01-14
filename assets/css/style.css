@@ -8,14 +8,14 @@ body {
     background-color: #00f7ff75;
 }
 
-#memory h1 {
+#adviseEl h1 {
     font-size: 3.5rem;
 }
 
-#counter {
+#resultEl {
+    height: 300px;
     font-size: 3rem;
     font-weight: 900;
-    border: 0.25rem solid rgb(0, 0, 0);
     padding: 1rem;
     color: rgb(0, 0, 170);
 }
