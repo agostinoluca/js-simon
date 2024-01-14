@@ -8,6 +8,7 @@ Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei num
 // collego gli elementi della dom
 const resultEl = document.getElementById('resultEl');
 const adviseEl = document.getElementById('adviseEl');
+const clock = document.getElementById('clock');
 
 // creo una array dove pushare i numeri casuali
 const randomNumber = [];
@@ -35,6 +36,17 @@ function generateRandomNumber() {
 generateRandomNumber(); 
 
 // imposto un timer di 30 secondi visibile in pagina
+let i = 30;
+const timerInterval = setInterval(function() {
+  if (i > 0) {
+    clock.innerText = (i);
+    i--;
+  } else {
+    // quando il timer raggiunge 0, interrompo il setInterval
+    clearInterval(timerInterval);
+    clock.innerText = 0;
+  }
+}, 1000);
 
 // svuoto il contenuto dell'elemento della dom
 

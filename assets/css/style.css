@@ -19,3 +19,16 @@ body {
     padding: 1rem;
     color: rgb(0, 0, 170);
 }
+
+#clock {
+    font-size: 4rem;
+    font-weight: 900;
+    padding: 4rem;
+    width: max-content;
+    aspect-ratio: 1;
+    background-image: url(../img/chrono.png);
+    background-size: cover;
+    margin: auto;
+    border-radius: 50%;
+    color: red;
+}
