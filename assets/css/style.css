@@ -32,3 +32,17 @@ body {
     border-radius: 50%;
     color: red;
 }
+
+.animation {
+    animation: scale 1s linear infinite;
+}
+
+@keyframes scale {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(1.1);
+    }    
+}

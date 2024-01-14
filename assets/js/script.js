@@ -36,19 +36,24 @@ function generateRandomNumber() {
 generateRandomNumber(); 
 
 // imposto un timer di 30 secondi visibile in pagina
-let i = 30;
+let i = 3;
 const timerInterval = setInterval(function() {
   if (i > 0) {
     clock.innerText = (i);
     i--;
+    clock.classList.add('animation');
   } else {
     // quando il timer raggiunge 0, interrompo il setInterval
     clearInterval(timerInterval);
     clock.innerText = 0;
+    clock.classList.remove('animation');
+    
+    // svuoto il contenuto dell'elemento della dom
+    resultEl.innerHTML = ('');
+    adviseEl.innerHTML = ('');
   }
 }, 1000);
 
-// svuoto il contenuto dell'elemento della dom
 
 // avvio 5 prompt chiedendo i numer
 
