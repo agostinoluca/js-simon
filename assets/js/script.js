@@ -36,7 +36,7 @@ function generateRandomNumber() {
 generateRandomNumber(); 
 
 // imposto un timer di 30 secondi visibile in pagina
-let i = 3;
+let i = 30;
 const timerInterval = setInterval(function() {
   if (i > 0) {
     clock.innerText = (i);
