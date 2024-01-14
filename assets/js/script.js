@@ -18,7 +18,7 @@ function generateRandomNumber() {
   // itero il ciclo di operazioni 5 volte
   for (let i = 0; i < 5; i++) {
     // creo un numero casuale tra 1 e 10 approssimato per difetto
-    const number = Math.floor(Math.random() * 10) + 1;
+    const number = Math.floor(Math.random() * 50) + 1;
     // pusho il numero ottenuto nella array randomNumber
     randomNumber.push(number);
 
