@@ -11,13 +11,13 @@ const adviseEl = document.getElementById('adviseEl');
 const clock = document.getElementById('clock');
 
 // creo una array dove pushare i numeri casuali
-const randomNumber = [];
+const randomNumbers = [];
 
 // richiamo la funzione per generare i numeri casuali in pagina
 generateRandomNumber(); 
 
 // imposto un timer di 30 secondi visibile in pagina
-let i = 30;
+let i = 2;
 const timerInterval = setInterval(function() {
   if (i > 0) {
     clock.innerText = i;
@@ -30,28 +30,34 @@ const timerInterval = setInterval(function() {
     clock.classList.remove('animation');
     
     // svuoto il contenuto dell'elemento della dom
-    resultEl.innerHTML = ('');
-    adviseEl.innerHTML = ('');
+    resultEl.innerHTML = '';
+    adviseEl.innerHTML = '';
   };
 }, 1000);
 
 // imposto un timeout di 32s per permettere al cronometro di arrivare a 0
 setTimeout(() => {
   // creo una array dove pushare i numeri inseriti dall'utente
-  const numeriInseriti = [];
+  const inputNumbers = [];
   // itero i prompt per 5 volte
   for (let i = 0; i < 5; i++) {
-    const numeroInserito = prompt('Quali numeri hai visto?\nInseriscine uno alla volta.');
+    const inputNumber = prompt('Quali numeri hai visto?\nInseriscine uno alla volta.');
     // pusho i numeri inseriti nella array
-    numeriInseriti.push(numeroInserito);
-    
-    console.log(numeriInseriti);
-    
-    // comparo i numeri inseriti con quelli generati casualmente
-    
-    // annuncio il risultato
-  }
-}, 32000);
+    inputNumbers.push(inputNumber);
+  };
+  
+  // comparo i numeri inseriti con quelli generati casualmente utilizzando un forEach
+  const correctNumbers = [];
+  inputNumbers.forEach(number => {
+    if (randomNumbers.includes(parseInt(number, 10))) {
+      correctNumbers.push(number);
+    }
+  });
+  console.log(correctNumbers);
+
+  // annuncio il risultato
+
+}, 4000);
 
 
 
@@ -61,8 +67,8 @@ function generateRandomNumber() {
   for (let i = 0; i < 5; i++) {
     // creo un numero casuale tra 1 e 10 approssimato per difetto
     const number = Math.floor(Math.random() * 50) + 1;
-    // pusho il numero ottenuto nella array randomNumber
-    randomNumber.push(number);
+    // pusho il numero ottenuto nella array randomNumbers
+    randomNumbers.push(number);
 
     // creo un div
     const colDiv = document.createElement('div');
