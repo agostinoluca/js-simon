@@ -7,7 +7,10 @@ Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei num
 
 // collego gli elementi della dom
 const resultEl = document.getElementById('resultEl');
+const finalEl = document.getElementById('finalEl');
 const adviseEl = document.getElementById('adviseEl');
+const finalAdviseEl = document.getElementById('finalAdviseEl');
+const finalReportEl = document.getElementById('finalReportEl');
 const clock = document.getElementById('clock');
 
 // creo una array dove pushare i numeri casuali
@@ -17,7 +20,7 @@ const randomNumbers = [];
 generateRandomNumber(); 
 
 // imposto un timer di 30 secondi visibile in pagina
-let i = 2;
+let i = 30;
 const timerInterval = setInterval(function() {
   if (i > 0) {
     clock.innerText = i;
@@ -31,7 +34,7 @@ const timerInterval = setInterval(function() {
     
     // svuoto il contenuto dell'elemento della dom
     resultEl.innerHTML = '';
-    adviseEl.innerHTML = '';
+    adviseEl.innerText = '';
   };
 }, 1000);
 
@@ -55,9 +58,45 @@ setTimeout(() => {
   });
   console.log(correctNumbers);
 
-  // annuncio il risultato
+  // nascondo il cronometro
+  clock.className = 'd-none';
 
-}, 4000);
+  // aggiunto un advise precedente ai numeri inseriti dall'utente
+  adviseEl.innerHTML = `<h1>HAI INSERITO I SEGUENTI NUMERI:</h1>`;
+  
+  // stampo in pagina i numeri inseriti dall'utente
+  for (let i = 0; i < inputNumbers.length; i++) {
+    const inputNumber = inputNumbers[i];
+    // creo un div
+    const colDiv = document.createElement('div');
+    // assegno le classi al div
+    colDiv.classList.add('col', 'text-center');
+    // scrivo dentro il numero
+    colDiv.textContent = inputNumber;
+    // appendo il tutto alla dom
+    resultEl.appendChild(colDiv);
+  };
+
+  // aggiunto un advise precedente ai numeri randomici generati in avvio
+  finalAdviseEl.innerHTML = `<h1>I NUMERI DA RICORDARE ERANO:</h1>`;
+
+  // stampo in pagina i numeri randomici iniziali
+  for (let i = 0; i < randomNumbers.length; i++) {
+    const randomNumber = randomNumbers[i];
+    // creo un div
+    const colDiv = document.createElement('div');
+    // assegno le classi al div
+    colDiv.classList.add('col', 'text-center');
+    // scrivo dentro il numero
+    colDiv.textContent = randomNumber;
+    // appendo il tutto alla dom
+    finalEl.appendChild(colDiv);
+  };
+
+  // stampo in pagina un report finale annunciando il risultato
+  finalReportEl.innerText = (`Hai ricordato ${correctNumbers.length} numeri su 5!`);
+
+}, 32000);
 
 
 
@@ -80,3 +119,20 @@ function generateRandomNumber() {
     resultEl.appendChild(colDiv);
   };
 };
+
+
+
+
+/* 
+Il software risponde correttamente alla consegna, ma comprendo che la strada intrapresa è molto più complessa del dovuto.
+
+PROBLEMI RICONOSCIUTI:
+-randomNumber genera anche numeri identici e anche l'utente può inserire nei prompt numeri identici 
+ (dovrei creare una condizione più complessa per non far accettare numeri già pushati nelle array di randomNumbers e inputNumbers);
+
+-sempre sul prompt devo fixare l'inserimento del dato e chiedere esclusivamente numeri;
+
+-ho creato troppi nodi della dom nominandoli in maniera confusa (ho aggiunto pezzi inizialmente non programmati);
+
+-bisogna snellire il codice, ad esempio creare una function per creare dinamicamente i div e non essere ripetitivo;
+*/

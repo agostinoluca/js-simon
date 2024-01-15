@@ -5,14 +5,15 @@
 }
 
 body {
-    background-color: #00f7ff75;
+    background-color: #6e639e56;
 }
 
-#adviseEl h1 {
-    font-size: 3.5rem;
+#adviseEl h1,
+#finalAdviseEl h1 {
+    font-size: 2.5rem;
 }
 
-#resultEl {
+#finalEl, #resultEl {
     font-size: 3rem;
     font-weight: 900;
     padding: 1rem;
@@ -30,6 +31,12 @@ body {
     margin: auto;
     border-radius: 50%;
     color: red;
+}
+
+#finalReportEl {
+    font-size: 3rem;
+    font-weight: 900;
+    color: green;
 }
 
 .animation {
