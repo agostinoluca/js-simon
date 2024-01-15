@@ -13,6 +13,48 @@ const clock = document.getElementById('clock');
 // creo una array dove pushare i numeri casuali
 const randomNumber = [];
 
+// richiamo la funzione per generare i numeri casuali in pagina
+generateRandomNumber(); 
+
+// imposto un timer di 30 secondi visibile in pagina
+let i = 30;
+const timerInterval = setInterval(function() {
+  if (i > 0) {
+    clock.innerText = i;
+    i--;
+    clock.classList.add('animation');
+  } else {
+    // quando il timer raggiunge 0, interrompo il setInterval
+    clearInterval(timerInterval);
+    clock.innerText = 0;
+    clock.classList.remove('animation');
+    
+    // svuoto il contenuto dell'elemento della dom
+    resultEl.innerHTML = ('');
+    adviseEl.innerHTML = ('');
+  };
+}, 1000);
+
+// imposto un timeout di 32s per permettere al cronometro di arrivare a 0
+setTimeout(() => {
+  // creo una array dove pushare i numeri inseriti dall'utente
+  const numeriInseriti = [];
+  // itero i prompt per 5 volte
+  for (let i = 0; i < 5; i++) {
+    const numeroInserito = prompt('Quali numeri hai visto?\nInseriscine uno alla volta.');
+    // pusho i numeri inseriti nella array
+    numeriInseriti.push(numeroInserito);
+    
+    console.log(numeriInseriti);
+    
+    // comparo i numeri inseriti con quelli generati casualmente
+    
+    // annuncio il risultato
+  }
+}, 32000);
+
+
+
 // con una funzione creo dei numeri random e li appendo alla dom
 function generateRandomNumber() {
   // itero il ciclo di operazioni 5 volte
@@ -32,31 +74,3 @@ function generateRandomNumber() {
     resultEl.appendChild(colDiv);
   };
 };
-
-generateRandomNumber(); 
-
-// imposto un timer di 30 secondi visibile in pagina
-let i = 30;
-const timerInterval = setInterval(function() {
-  if (i > 0) {
-    clock.innerText = (i);
-    i--;
-    clock.classList.add('animation');
-  } else {
-    // quando il timer raggiunge 0, interrompo il setInterval
-    clearInterval(timerInterval);
-    clock.innerText = 0;
-    clock.classList.remove('animation');
-    
-    // svuoto il contenuto dell'elemento della dom
-    resultEl.innerHTML = ('');
-    adviseEl.innerHTML = ('');
-  }
-}, 1000);
-
-
-// avvio 5 prompt chiedendo i numer
-
-// comparo i numeri inseriti con quelli generati casualmente
-
-// annuncio il risultato
