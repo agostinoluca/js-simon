@@ -67,14 +67,9 @@ setTimeout(() => {
   // stampo in pagina i numeri inseriti dall'utente
   for (let i = 0; i < inputNumbers.length; i++) {
     const inputNumber = inputNumbers[i];
-    // creo un div
-    const colDiv = document.createElement('div');
-    // assegno le classi al div
-    colDiv.classList.add('col', 'text-center');
-    // scrivo dentro il numero
-    colDiv.textContent = inputNumber;
-    // appendo il tutto alla dom
-    resultEl.appendChild(colDiv);
+    
+    // creo il markup con una funzione
+    displayNumbers(resultEl, inputNumber);
   };
 
   // aggiunto un advise precedente ai numeri randomici generati in avvio
@@ -83,14 +78,10 @@ setTimeout(() => {
   // stampo in pagina i numeri randomici iniziali
   for (let i = 0; i < randomNumbers.length; i++) {
     const randomNumber = randomNumbers[i];
-    // creo un div
-    const colDiv = document.createElement('div');
-    // assegno le classi al div
-    colDiv.classList.add('col', 'text-center');
-    // scrivo dentro il numero
-    colDiv.textContent = randomNumber;
-    // appendo il tutto alla dom
-    finalEl.appendChild(colDiv);
+
+    // creo il markup con una funzione
+    displayNumbers(finalEl, randomNumber);
+
   };
 
   // stampo in pagina un report finale annunciando il risultato
@@ -109,30 +100,21 @@ function generateRandomNumber() {
     // pusho il numero ottenuto nella array randomNumbers
     randomNumbers.push(number);
 
-    // creo un div
-    const colDiv = document.createElement('div');
-    // assegno le classi al div
-    colDiv.classList.add('col', 'text-center');
-    // scrivo dentro il numero casuale ottenuto
-    colDiv.textContent = number;
-    // appendo il tutto alla dom
-    resultEl.appendChild(colDiv);
+    // creo il markup con una funzione
+    displayNumbers(resultEl, number);
   };
 };
 
 
-
-
-/* 
-Il software risponde correttamente alla consegna, ma comprendo che la strada intrapresa è molto più complessa del dovuto.
-
-PROBLEMI RICONOSCIUTI:
--randomNumber genera anche numeri identici e anche l'utente può inserire nei prompt numeri identici 
- (dovrei creare una condizione più complessa per non far accettare numeri già pushati nelle array di randomNumbers e inputNumbers);
-
--sempre sul prompt devo fixare l'inserimento del dato e chiedere esclusivamente numeri;
-
--ho creato troppi nodi della dom nominandoli in maniera confusa (ho aggiunto pezzi inizialmente non programmati);
-
--bisogna snellire il codice, ad esempio creare una function per creare dinamicamente i div e non essere ripetitivo;
-*/
+// funzione per creare il div, assegnare classi, inserire il numero e appendere al container
+/**
+ * 
+ * @param {HTMLElement} container -> il contenitore a cui appendere i div creati
+ * @param {string} text -> il valore si aspetta una stringa (nel nostro caso sarà un numero)
+ */
+function displayNumbers(container, text) {
+  const div = document.createElement('div');
+  div.textContent = text;
+  div.classList.add('col', 'text-center');
+  container.appendChild(div);
+};
