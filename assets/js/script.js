@@ -95,13 +95,19 @@ setTimeout(() => {
 function generateRandomNumber() {
   // itero il ciclo di operazioni 5 volte
   for (let i = 0; i < 5; i++) {
-    // creo un numero casuale tra 1 e 10 approssimato per difetto
+    // creo un numero casuale tra 1 e 50 approssimato per difetto
     const number = Math.floor(Math.random() * 50) + 1;
-    // pusho il numero ottenuto nella array randomNumbers
-    randomNumbers.push(number);
-
-    // creo il markup con una funzione
-    displayNumbers(resultEl, number);
+    // se il numero non è contenuto nella array
+    if (!randomNumbers.includes(number)) {
+      // pusho il numero ottenuto nella array randomNumbers
+      randomNumbers.push(number);
+      // creo il markup con una funzione
+      displayNumbers(resultEl, number);
+    // se invece il numero è già contenuto
+    } else {
+      //decremento l'indice
+      i--
+    }
   };
 };
 
