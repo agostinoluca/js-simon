@@ -46,23 +46,25 @@ setTimeout(() => {
   for (let i = 0; i < 5; i++) {
     const inputNumber = parseInt(prompt('Quali numeri hai visto?\nInseriscine uno alla volta.'), 10);
 
-    // se il numero inserito dall'utente non è già presente nella array
-    if (!inputNumbers.includes(inputNumber) && inputNumber <= 50) {
+    // se il numero inserito dall'utente non è già presente nella array ed è compreso tra 1 e 50
+    if (!inputNumbers.includes(inputNumber) && inputNumber >=1 && inputNumber <= 50) {
       // pusho i numeri inseriti nella array
       inputNumbers.push(inputNumber);
     
-    } else if (inputNumber > 50) {
+    // se il numero non è compreso tra 1 e 50
+    } else if (inputNumber > 50 || inputNumber < 1) {
       // con un alert avviso l'utente che non ha seguito le istruzioni
-      alert('Hai inserito un numero maggiore di 50.\nInserisci un numero tra 1 e 50 per continuare.')
+      alert('Hai inserito 0 o un numero maggiore di 50.\nInserisci un numero tra 1 e 50 per continuare.')
       //decremento l'indice
       i--     
-
+    
+    // se l'input dell'utente produce un isNaN
     } else if (isNaN(inputNumber)) {
       alert('Hai inserito caratteri non validi.\nRiprova per continuare.')
       //decremento l'indice
       i--
 
-    // se invece è un numero minore di 50 ma è già contenuto nella array
+    // se invece è un numero tra 1 e 50 ma è già contenuto nella array
     } else {
       // con un alert avviso l'utente che ha già inserito il numero
       alert('Hai già inserito questo numero.\nInserisci un numero diverso per continuare.')
