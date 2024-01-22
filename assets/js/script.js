@@ -44,10 +44,16 @@ setTimeout(() => {
   const inputNumbers = [];
   // itero i prompt per 5 volte
   for (let i = 0; i < 5; i++) {
-    const inputNumber = parseInt(prompt('Quali numeri hai visto?\nInseriscine uno alla volta.'), 10);
+    const inputNumber = parseInt(prompt('Quali numeri hai visto?\nInseriscine uno alla volta.'));
+
+    // se l'input dell'utente produce un isNaN
+    if (isNaN(inputNumber)) {
+      alert('Hai inserito caratteri non validi.\nRiprova per continuare.')
+      //decremento l'indice
+      i--
 
     // se il numero inserito dall'utente non è già presente nella array ed è compreso tra 1 e 50
-    if (!inputNumbers.includes(inputNumber) && inputNumber >=1 && inputNumber <= 50) {
+    } else if (!inputNumbers.includes(inputNumber) && inputNumber >=1 && inputNumber <= 50) {
       // pusho i numeri inseriti nella array
       inputNumbers.push(inputNumber);
     
@@ -56,13 +62,7 @@ setTimeout(() => {
       // con un alert avviso l'utente che non ha seguito le istruzioni
       alert('Hai inserito 0 o un numero maggiore di 50.\nInserisci un numero tra 1 e 50 per continuare.')
       //decremento l'indice
-      i--     
-    
-    // se l'input dell'utente produce un isNaN
-    } else if (isNaN(inputNumber)) {
-      alert('Hai inserito caratteri non validi.\nRiprova per continuare.')
-      //decremento l'indice
-      i--
+      i--   
 
     // se invece è un numero tra 1 e 50 ma è già contenuto nella array
     } else {
@@ -92,8 +92,18 @@ setTimeout(() => {
   for (let i = 0; i < inputNumbers.length; i++) {
     const inputNumber = inputNumbers[i];
     
+    // aggiungo una variabile per l'argomento della funzione 'classe'
+    let classe = '';
+
+    // se il numero inserito è corretto applico la classe
+    if (correctNumbers.includes(inputNumber)) {
+      classe = 'text-success'; 
+    } else {
+      classe = 'text-danger';
+    };
+
     // creo il markup con una funzione
-    displayNumbers(resultEl, inputNumber);
+    displayNumbers(resultEl, inputNumber, classe);
   };
 
   // aggiunto un advise precedente ai numeri randomici generati in avvio
@@ -109,7 +119,11 @@ setTimeout(() => {
   };
 
   // stampo in pagina un report finale annunciando il risultato
-  finalReportEl.innerText = (`Hai ricordato ${correctNumbers.length} numeri su 5!`);
+  if (correctNumbers.length === 1) {
+    finalReportEl.innerText = (`Hai ricordato 1 solo numero su 5!`);
+  } else {
+    finalReportEl.innerText = (`Hai ricordato ${correctNumbers.length} numeri su 5!`);
+  }
 }, 32000);
 
 
@@ -140,10 +154,14 @@ function generateRandomNumber() {
  * 
  * @param {HTMLElement} container -> il contenitore a cui appendere i div creati
  * @param {string} text -> il valore si aspetta una stringa (nel nostro caso sarà un numero)
+ * @param {string} classe -> (opzionale) si aspetta una stringa di classi se esiste il valore 'classe'
  */
-function displayNumbers(container, text) {
+function displayNumbers(container, text, classe) {
   const div = document.createElement('div');
   div.textContent = text;
   div.classList.add('col', 'text-center');
+  if (classe) {
+    div.classList.add(classe);
+  }
   container.appendChild(div);
 };
