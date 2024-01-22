@@ -44,14 +44,25 @@ setTimeout(() => {
   const inputNumbers = [];
   // itero i prompt per 5 volte
   for (let i = 0; i < 5; i++) {
-    const inputNumber = prompt('Quali numeri hai visto?\nInseriscine uno alla volta.');
+    const inputNumber = parseInt(prompt('Quali numeri hai visto?\nInseriscine uno alla volta.'), 10);
 
     // se il numero inserito dall'utente non è già presente nella array
-    if (!inputNumbers.includes(inputNumber)) {
+    if (!inputNumbers.includes(inputNumber) && inputNumber <= 50) {
       // pusho i numeri inseriti nella array
       inputNumbers.push(inputNumber);
+    
+    } else if (inputNumber > 50) {
+      // con un alert avviso l'utente che non ha seguito le istruzioni
+      alert('Hai inserito un numero maggiore di 50.\nInserisci un numero tra 1 e 50 per continuare.')
+      //decremento l'indice
+      i--     
 
-    // se invece il numero è già contenuto
+    } else if (isNaN(inputNumber)) {
+      alert('Hai inserito caratteri non validi.\nRiprova per continuare.')
+      //decremento l'indice
+      i--
+
+    // se invece è un numero minore di 50 ma è già contenuto nella array
     } else {
       // con un alert avviso l'utente che ha già inserito il numero
       alert('Hai già inserito questo numero.\nInserisci un numero diverso per continuare.')
@@ -97,7 +108,6 @@ setTimeout(() => {
 
   // stampo in pagina un report finale annunciando il risultato
   finalReportEl.innerText = (`Hai ricordato ${correctNumbers.length} numeri su 5!`);
-
 }, 32000);
 
 
