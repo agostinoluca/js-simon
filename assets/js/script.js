@@ -45,8 +45,19 @@ setTimeout(() => {
   // itero i prompt per 5 volte
   for (let i = 0; i < 5; i++) {
     const inputNumber = prompt('Quali numeri hai visto?\nInseriscine uno alla volta.');
-    // pusho i numeri inseriti nella array
-    inputNumbers.push(inputNumber);
+
+    // se il numero inserito dall'utente non è già presente nella array
+    if (!inputNumbers.includes(inputNumber)) {
+      // pusho i numeri inseriti nella array
+      inputNumbers.push(inputNumber);
+
+    // se invece il numero è già contenuto
+    } else {
+      // con un alert avviso l'utente che ha già inserito il numero
+      alert('Hai già inserito questo numero.\nInserisci un numero diverso per continuare.')
+      //decremento l'indice
+      i--
+    };
   };
   
   // comparo i numeri inseriti con quelli generati casualmente utilizzando un forEach
